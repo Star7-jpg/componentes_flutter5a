@@ -8,7 +8,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('App de componentes de flutter'),
+        title: const Text(
+          'App de componentes de flutter',
+        ),
       ),
       body: ListView(
         children: <Widget>[
@@ -20,36 +22,54 @@ class HomeScreen extends StatelessWidget {
             ),
             subtitle: Text(
               'Recuperar información de TextField',
-              style: Theme.of(context).textTheme.bodySmall,
+              style: AppTheme.ligthTheme.textTheme.bodySmall,
             ),
-            leading: const Icon(Icons.input_rounded),
-            trailing: const Icon(Icons.arrow_right_alt_outlined),
+            leading: const Icon(
+              Icons.input_rounded,
+              color: AppTheme.primaryColor,
+            ),
+            trailing: const Icon(
+              Icons.arrow_right_alt_outlined,
+              color: AppTheme.primaryColor,
+            ),
           ),
           const Divider(),
           ListTile(
             title: Text(
               'Lista infinita',
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: AppTheme.ligthTheme.textTheme.headlineLarge,
             ),
             subtitle: Text(
               'Recuperar muchos elementos',
-              style: Theme.of(context).textTheme.bodySmall,
+              style: AppTheme.ligthTheme.textTheme.bodySmall,
             ),
-            leading: const Icon(Icons.list_alt_sharp),
-            trailing: const Icon(Icons.arrow_right_alt_outlined),
+            leading: const Icon(
+              Icons.list_alt_sharp,
+              color: AppTheme.primaryColor,
+            ),
+            trailing: const Icon(
+              Icons.arrow_right_alt_outlined,
+              color: AppTheme.primaryColor,
+            ),
           ),
           const Divider(),
           ListTile(
             title: Text(
               'Notificaciones',
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: AppTheme.ligthTheme.textTheme.headlineLarge,
             ),
             subtitle: Text(
               'Manejo de notificaciones',
-              style: Theme.of(context).textTheme.bodySmall,
+              style: AppTheme.ligthTheme.textTheme.bodySmall,
             ),
-            leading: const Icon(Icons.notification_important),
-            trailing: const Icon(Icons.arrow_right_alt_outlined),
+            leading: const Icon(
+              Icons.notification_important,
+              color: AppTheme.primaryColor,
+            ),
+            trailing: const Icon(
+              Icons.arrow_right_alt_outlined,
+              color: AppTheme.primaryColor,
+            ),
           ),
         ],
       ),
