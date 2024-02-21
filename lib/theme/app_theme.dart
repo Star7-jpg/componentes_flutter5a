@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   //Constante del valor primario
-  static const primaryColor = Colors.black;
+  static const primaryColor = Color.fromARGB(255, 23, 124, 240);
   //Constante del color secundario
   static const secondaryColor = Color.fromARGB(255, 172, 21, 202);
   //Constante del color de fondo
