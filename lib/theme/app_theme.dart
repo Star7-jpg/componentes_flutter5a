@@ -12,7 +12,7 @@ class AppTheme {
   //Definición del tema de color y estilo de la app
   static final ThemeData ligthTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: backColor,
-    appBarTheme: const AppBarTheme(color: primaryColor),
+    appBarTheme: const AppBarTheme(color: secondaryColor),
     textTheme: TextTheme(
       //Títulos de primer nivel
       headlineLarge: GoogleFonts.acme(

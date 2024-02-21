@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Notifications extends StatelessWidget {
-  const Notifications({super.key});
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Notificaciones'),
+      child: Text('Datos de las entradas'),
     );
   }
 }
