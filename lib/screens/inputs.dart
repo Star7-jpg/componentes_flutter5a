@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practica3/screens/data_screens.dart';
 import 'package:practica3/theme/app_theme.dart';
 
 class Inputs extends StatefulWidget {
