@@ -56,7 +56,8 @@ class _ImagesScreenState extends State<ImagesScreen> {
   Widget imageWeb() {
     return Center(
       child: Image.network(
-          'https://celebmafia.com/wp-content/uploads/2022/08/billie-eilish-08-22-2022-10.jpg'),
+        'https://celebmafia.com/wp-content/uploads/2022/08/billie-eilish-08-22-2022-10.jpg',
+      ),
     );
   }
 }

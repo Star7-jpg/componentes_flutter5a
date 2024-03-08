@@ -9,8 +9,10 @@ class Inputs extends StatefulWidget {
 }
 
 class _InputsState extends State<Inputs> {
-  double sliderValue = 0.0;
   bool valueSwitch = false;
+  double sliderValue = 0.0;
+  int foodRadio = 0;
+  bool postreCheck1 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,31 +21,42 @@ class _InputsState extends State<Inputs> {
           'Entradas',
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            entradaTexto(),
-            entradaSwitch(),
-            entradasSlider(),
-            const ElevatedButton(
-              //style: AppTheme.ligthTheme.elevatedButtonTheme,
-              //Tarea realizar el código para pasar al DataSreen
-              onPressed: null,
-              child: Text(
-                'DataSreen',
-              ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                entradaTexto(),
+                entradaSwitch(),
+                entradaSlider(),
+                entradasRadio(),
+                Text(
+                  '¿Que postres te gustan?',
+                  style: AppTheme.ligthTheme.textTheme.headlineLarge,
+                ),
+                entradasCheck(),
+                const ElevatedButton(
+                    onPressed: null,
+                    child: Text(
+                      'Guardar',
+                    )),
+              ],
             ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-          BottomNavigationBarItem(icon: Icon(Icons.next_plan), label: 'Datos'),
+          ),
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Inicio',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.next_plan),
+          label: 'Datos',
+        )
+      ]),
     );
   }
 
@@ -52,7 +65,7 @@ class _InputsState extends State<Inputs> {
       style: AppTheme.ligthTheme.textTheme.headlineMedium,
       decoration: InputDecoration(
         border: const UnderlineInputBorder(),
-        labelText: 'Escribe tu nombre',
+        labelText: 'Escribe tu Nombre: ',
         labelStyle: AppTheme.ligthTheme.textTheme.headlineLarge,
       ),
     );
@@ -61,6 +74,7 @@ class _InputsState extends State<Inputs> {
   Row entradaSwitch() {
     return Row(
       children: [
+        const FlutterLogo(),
         Text(
           '¿Te gusta Flutter?',
           style: AppTheme.ligthTheme.textTheme.headlineLarge,
@@ -71,30 +85,93 @@ class _InputsState extends State<Inputs> {
               setState(() {
                 valueSwitch = value;
               });
-            })
+            }),
       ],
     );
   }
 
-  Column entradasSlider() {
+  Column entradaSlider() {
     return Column(
       children: [
         Text(
-          '¿Qué tanto te gusta flutter',
+          '¿Que tanto te gusta flutter?',
           style: AppTheme.ligthTheme.textTheme.headlineLarge,
         ),
         Slider(
-            divisions: 10,
             min: 0.0,
             max: 10.0,
             value: sliderValue,
+            divisions: 10,
             label: '${sliderValue.round()}',
             onChanged: (value) {
               setState(() {
                 sliderValue = value;
-                // print('Valor del slider: $sliderValue');
               });
-            })
+            }),
+      ],
+    );
+  }
+
+  Column entradasRadio() {
+    return Column(
+      children: [
+        Text(
+          '¿Que prefiere?',
+          style: AppTheme.ligthTheme.textTheme.headlineLarge,
+        ),
+        ListTile(
+          title: Text(
+            'Tacos al pastor',
+            style: AppTheme.ligthTheme.textTheme.bodySmall,
+          ),
+          leading: Radio(
+            value: 1,
+            groupValue: foodRadio,
+            onChanged: (value) {
+              setState(() {
+                foodRadio = value!;
+              });
+            },
+          ),
+        ),
+        ListTile(
+          title: Text(
+            'Chiles Rellenos',
+            style: AppTheme.ligthTheme.textTheme.bodySmall,
+          ),
+          leading: Radio(
+            value: 2,
+            groupValue: foodRadio,
+            onChanged: (value) {
+              setState(() {
+                foodRadio = value!;
+              });
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row entradasCheck() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(
+          'Helado',
+          style: AppTheme.ligthTheme.textTheme.bodySmall,
+        ),
+        Checkbox(
+            value: postreCheck1,
+            onChanged: (value) {
+              setState(() {
+                postreCheck1 = value!;
+              });
+            }),
+        Text(
+          'Chocoflan',
+          style: AppTheme.ligthTheme.textTheme.bodySmall,
+        ),
       ],
     );
   }
