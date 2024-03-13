@@ -5,8 +5,15 @@ import 'package:practica3/screens/inputs.dart';
 import 'package:practica3/screens/notifications.dart';
 import 'package:practica3/theme/app_theme.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {

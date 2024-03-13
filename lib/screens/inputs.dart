@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:practica3/models/data.dart';
+import 'package:practica3/screens/data_screens.dart';
 import 'package:practica3/screens/home_screen.dart';
 import 'package:practica3/screens/images_screen.dart';
 import 'package:practica3/screens/infinite_list.dart';
@@ -13,10 +16,12 @@ class Inputs extends StatefulWidget {
 }
 
 class _InputsState extends State<Inputs> {
+  String? nombre;
   bool valueSwitch = false;
   double sliderValue = 0.0;
-  int foodRadio = 0;
+  String? foodRadio;
   bool postreCheck1 = false;
+  bool postreCheck2 = false;
   int selectedIndex = 0; //Elemento seleccionado del BottomNavigationBar
   @override
   Widget build(BuildContext context) {
@@ -42,11 +47,26 @@ class _InputsState extends State<Inputs> {
                   style: AppTheme.ligthTheme.textTheme.headlineLarge,
                 ),
                 entradasCheck(),
-                const ElevatedButton(
-                    onPressed: null,
-                    child: Text(
-                      'Guardar',
-                    )),
+                ElevatedButton(
+                  onPressed: () {
+                    Data data = Data(
+                        nom: nombre!,
+                        flutter: valueSwitch,
+                        calif: sliderValue.round(),
+                        food: foodRadio!,
+                        icecream: postreCheck1,
+                        choco: postreCheck2);
+                    final ruta2 = MaterialPageRoute(
+                      builder: (context) {
+                        return DataScreen(datos: data);
+                      },
+                    );
+                    Navigator.push(context, ruta2);
+                  },
+                  child: const Text(
+                    'Guardar',
+                  ),
+                ),
               ],
             ),
           ),
@@ -102,6 +122,9 @@ class _InputsState extends State<Inputs> {
       case 3:
         ruta = MaterialPageRoute(builder: (context) => const ImagesScreen());
         break;
+      case 4: //No aplicable en navegadores
+        SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+        break;
       default:
     }
     setState(() {
@@ -118,6 +141,9 @@ class _InputsState extends State<Inputs> {
         labelText: 'Escribe tu Nombre: ',
         labelStyle: AppTheme.ligthTheme.textTheme.headlineLarge,
       ),
+      onChanged: (text) {
+        nombre = text;
+      },
     );
   }
 
@@ -175,7 +201,7 @@ class _InputsState extends State<Inputs> {
             style: AppTheme.ligthTheme.textTheme.bodySmall,
           ),
           leading: Radio(
-            value: 1,
+            value: 'Tacos al pastor',
             groupValue: foodRadio,
             onChanged: (value) {
               setState(() {
@@ -190,7 +216,7 @@ class _InputsState extends State<Inputs> {
             style: AppTheme.ligthTheme.textTheme.bodySmall,
           ),
           leading: Radio(
-            value: 2,
+            value: 'Chiles rellenos',
             groupValue: foodRadio,
             onChanged: (value) {
               setState(() {
@@ -222,6 +248,13 @@ class _InputsState extends State<Inputs> {
           'Chocoflan',
           style: AppTheme.ligthTheme.textTheme.bodySmall,
         ),
+        Checkbox(
+            value: postreCheck1,
+            onChanged: (value) {
+              setState(() {
+                postreCheck2 = value!;
+              });
+            }),
       ],
     );
   }
